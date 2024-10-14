@@ -18,10 +18,11 @@ library UniswapV2Library {
     function pairFor(address factory, address tokenA, address tokenB) internal pure returns (address pair) {
         (address token0, address token1) = sortTokens(tokenA, tokenB);
         pair = address(uint(keccak256(abi.encodePacked(
-                hex'ff',
-                factory,
-                keccak256(abi.encodePacked(token0, token1)),
-                hex'96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f' // init code hash
+                bytes32(0x2020dba91b30cc0006188af794c2fb30dd8520db7e2c088b7fc7c103c00ca494), // keccak256("zksyncCreate2")
+                bytes32(uint256(uint160(factory))), // sender
+                keccak256(abi.encodePacked(token0, token1)), // salt
+                hex'0100052734c4d75c5acbdc1a3a934476b46a054330ef6ea080b0f3241ef3f4c1', // init code hash
+                bytes32(0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470) // constructor input hash: keccak256("")
             ))));
     }
 

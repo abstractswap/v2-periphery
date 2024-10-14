@@ -3,7 +3,7 @@
   "version": "1.1.0-beta.0",
   "description": "🎚 Peripheral smart contracts for interacting with Uniswap V2",
   "engines": {
-    "node": ">=10"
+    "node": ">=14"
   },
   "homepage": "https://uniswap.org",
   "repository": {
@@ -12,25 +12,51 @@
   },
   "files": [
     "build",
-    "contracts"
+    "contracts",
+    "artifacts-zk/contracts/**/*.json",
+    "!artifacts-zk/contracts/**/*.dbg.json",
+    "!artifacts-zk/contracts/test/**/*",
+    "!artifacts-zk/contracts/base/**/*"
   ],
   "dependencies": {
+    "@matterlabs/hardhat-zksync": "^1.2.0",
     "@uniswap/lib": "4.0.1-alpha",
-    "@uniswap/v2-core": "1.0.0"
+    "@uniswap/v2-core": "https://github.com/uniswap-zksync/era-uniswap-v2-core.git#v1.0.1-zksync-era",
+    "hardhat-watcher": "^2.1.1",
+    "zksync-ethers": "^6.13.1"
   },
   "devDependencies": {
+    "@matterlabs/hardhat-zksync-deploy": "^0.6.3",
+    "@matterlabs/hardhat-zksync-solc": "^0.3.16",
+    "@matterlabs/hardhat-zksync-verify": "^0.1.5",
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-etherscan": "3.1.2",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@typechain/ethers-v5": "^4.0.0",
     "@types/chai": "^4.2.6",
     "@types/mocha": "^5.2.7",
     "chai": "^4.2.0",
+    "decimal.js": "^10.2.1",
     "ethereum-waffle": "^2.4.1",
     "ethereumjs-util": "^6.2.0",
+    "ethers": "^5.7.0",
+    "hardhat": "^2.14.0",
+    "hardhat-typechain": "^0.3.5",
+    "is-svg": "^4.3.1",
     "mocha": "^6.2.2",
+    "mocha-chai-jest-snapshot": "^1.1.0",
     "ncp": "^2.0.0",
     "prettier": "^1.19.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.10",
     "rimraf": "^3.0.0",
     "solc": "0.6.6",
+    "solhint": "^3.2.1",
+    "solhint-plugin-prettier": "^0.0.5",
+    "ts-generator": "^0.1.1",
     "ts-node": "^8.5.4",
-    "typescript": "^3.7.3"
+    "typechain": "^4.0.0",
+    "typescript": "^3.7.3",
+    "zksync-web3": "^0.14.3"
   },
   "scripts": {
     "lint": "yarn prettier ./test/*.ts --check",
